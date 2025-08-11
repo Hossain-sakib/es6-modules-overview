@@ -1,84 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Watch from "./Watch/Watch";
 
 const Watches = () => {
-  const smartWatches = [
-    {
-      id: 1,
-      name: "Apple Watch Series 9",
-      brand: "Apple",
-      price: 399,
-      color: "Midnight",
-    },
-    {
-      id: 2,
-      name: "Apple Watch SE (2nd Gen)",
-      brand: "Apple",
-      price: 249,
-      color: "Starlight",
-    },
-    {
-      id: 3,
-      name: "Samsung Galaxy Watch 6",
-      brand: "Samsung",
-      price: 349,
-      color: "Graphite",
-    },
-    {
-      id: 4,
-      name: "Samsung Galaxy Watch 6 Classic",
-      brand: "Samsung",
-      price: 399,
-      color: "Silver",
-    },
-    {
-      id: 5,
-      name: "Garmin Venu 3",
-      brand: "Garmin",
-      price: 449,
-      color: "Silver with White Band",
-    },
-    {
-      id: 6,
-      name: "Garmin Forerunner 265",
-      brand: "Garmin",
-      price: 449,
-      color: "Black",
-    },
-    {
-      id: 7,
-      name: "Amazfit GTR 4",
-      brand: "Amazfit",
-      price: 199,
-      color: "Superspeed Black",
-    },
-    {
-      id: 8,
-      name: "Fitbit Sense 2",
-      brand: "Fitbit",
-      price: 299,
-      color: "Shadow Grey",
-    },
-    {
-      id: 9,
-      name: "Fitbit Versa 4",
-      brand: "Fitbit",
-      price: 229,
-      color: "Waterfall Blue",
-    },
-    {
-      id: 10,
-      name: "Huawei Watch GT 4",
-      brand: "Huawei",
-      price: 349,
-      color: "Green",
-    },
-  ];
+  const [watches, setWatches] = useState([]);
 
+  useEffect(() => {
+    fetch("watches.json")
+      .then((res) => res.json())
+      .then((data) => setWatches(data));
+  }, []);
   return (
     <div>
       <h3>Watches</h3>
-      {smartWatches.map((watch) => (
+      {watches.map((watch) => (
         <Watch watch={watch}></Watch>
       ))}
     </div>
